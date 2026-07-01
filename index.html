@@ -1,27 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mead Calculator</title>
+  <title>Mead Maker's Toolkit</title>
 </head>
 <body>
-  <h1>Mead Calculator</h1>
+  <h1>Mead Maker's Toolkit</h1>
 
-  <p>Enter how many pounds of honey you want to use:</p>
+  <h2>Original Gravity Calculator</h2>
 
+  <p>Pounds of honey:</p>
   <input id="honey" type="number" placeholder="Example: 3">
-  <button onclick="calculate()">Calculate</button>
+
+  <p>Batch size in gallons:</p>
+  <input id="gallons" type="number" placeholder="Example: 1">
+
+  <br><br>
+
+  <button onclick="calculateOG()">Calculate OG</button>
 
   <h2>Result:</h2>
   <p id="result"></p>
 
   <script>
-    function calculate() {
-      let honey = document.getElementById("honey").value;
+    function calculateOG() {
+      let honey = Number(document.getElementById("honey").value);
+      let gallons = Number(document.getElementById("gallons").value);
 
-      let gallons = honey / 3;
+      let gravityPoints = (honey * 35) / gallons;
+      let og = 1 + (gravityPoints / 1000);
 
       document.getElementById("result").innerText =
-        honey + " lb of honey is roughly good for " + gallons.toFixed(2) + " gallon(s) of mead.";
+        honey + " lb of honey in " + gallons + " gallon(s) gives an estimated OG of " + og.toFixed(3);
     }
   </script>
 </body>
