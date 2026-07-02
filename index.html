@@ -84,5 +84,41 @@
         honey + " lb of honey in " + gallons + " gallon(s) gives an estimated OG of " + og.toFixed(3);
     }
   </script>
+
+  <script>
+  function calculateOG() {
+    let honey = Number(document.getElementById("honey").value);
+    let gallons = Number(document.getElementById("gallons").value);
+
+    let gravityPoints = (honey * 35) / gallons;
+    let og = 1 + (gravityPoints / 1000);
+
+    document.getElementById("result").innerText =
+      honey + " lb of honey in " + gallons + " gallon(s) gives an estimated OG of " + og.toFixed(3);
+  }
+
+  function calculateABV() {
+    let og = Number(document.getElementById("og").value);
+    let fg = Number(document.getElementById("fg").value);
+
+    let abv = (og - fg) * 131.25;
+
+    document.getElementById("abvResult").innerText =
+      "Estimated ABV: " + abv.toFixed(2) + "%";
+  }
+</script>
+
+  <h2>ABV Calculator</h2>
+
+<p>Original Gravity:</p>
+<input id="og" type="number" step="0.001" placeholder="Example: 1.105">
+
+<p>Final Gravity:</p>
+<input id="fg" type="number" step="0.001" placeholder="Example: 0.998">
+
+<button onclick="calculateABV()">Calculate ABV</button>
+
+<p id="abvResult"></p>
+
 </body>
 </html>
