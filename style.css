@@ -18,6 +18,14 @@
         color: #d4c6a5;
         font-size: 18px;
     }
+
+    hr {
+      border: none;
+      height: 2px;
+      background-color: #d89b3d;
+      margin: 35px 0;
+    }
+
     .card {
       background-color: #33251c;
       max-width: 500px;
