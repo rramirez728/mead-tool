@@ -59,8 +59,10 @@
       background-color: #f0b85a;
     }
 
-    #result {
-      font-size: 20px;
-      margin-top: 20px;
-      font-weight: bold;
+    #result,
+    #abvResult,
+    #honeyNeededResult {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
     }
