@@ -28,7 +28,7 @@
 
     .card {
       background-color: #33251c;
-      max-width: 500px;
+      max-width: 650px;
       margin: auto;
       padding: 30px;
       border-radius: 12px;
@@ -40,9 +40,16 @@
       padding: 12px;
       margin: 10px 0;
       border-radius: 8px;
-      border: none;
+      border: 2px solid transparent;
       font-size: 16px;
+      transition: border-color .2s ease;
     }
+
+    input:focus {
+      outline: none;
+      border-color: #d89b3d;
+    }
+
 
     button {
       background-color: #d89b3d;
@@ -53,10 +60,17 @@
       font-size: 16px;
       cursor: pointer;
       margin-top: 15px;
+
+      transition: all .2s ease;
     }
 
     button:hover {
-      background-color: #f0b85a;
+        background-color: #f0b85a;
+        transform: translateY(-2px);
+    }
+
+    button:active {
+        transform: translateY(1px);
     }
 
     #result,
