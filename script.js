@@ -64,3 +64,19 @@ function showSection(sectionId) {
 
     document.getElementById(sectionId).classList.remove("hidden");
 }
+
+function calculateBatchABV() {
+    let startingSg = Number(document.getElementById("startingSg").value);
+    let finalSg = Number(document.getElementById("finalSg").value);
+
+    if (!startingSg || !finalSg) {
+        document.getElementById("batchAbvResult").innerText =
+            "Please enter starting SG and final SG.";
+        return;
+    }
+
+    let abv = (startingSg - finalSg) * 131.25;
+
+    document.getElementById("batchAbvResult").innerText =
+        "Estimated Batch ABV: " + abv.toFixed(2) + "%";
+}

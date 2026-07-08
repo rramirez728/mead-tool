@@ -7,11 +7,13 @@
 
 <body>
 
+  <!-- Header -->
 <header>
   <h1>🍯 Mead Maker's Toolkit</h1>
   <p>Your companion for crafting better mead.</p>
 </header>
 
+<!-- Navigation -->
 <nav>
   <button onclick="showSection('home')">Home</button>
   <button onclick="showSection('calculators')">Calculators</button>
@@ -19,6 +21,7 @@
   <button onclick="showSection('about')">About</button>
 </nav>
 
+<!-- Home Page -->
 <section id="home" class="page-section hidden">
   <div class="card">
     <h2>Welcome</h2>
@@ -26,6 +29,7 @@
   </div>
 </section>
 
+<!-- Calculators -->
 <section id="calculators" class="page-section">
   <div class="card">
 
@@ -94,17 +98,41 @@
   </div>
 </section>
 
+<!-- Batch Page -->
 <section id="batchNotes" class="page-section hidden">
   <div class="card">
     <h2>Batch Notes</h2>
-    <p>Batch note saving will be added soon.</p>
-  </div>
-</section>
 
-<section id="about" class="page-section hidden">
-  <div class="card">
-    <h2>About</h2>
-    <p>Mead Maker's Toolkit is a beginner-friendly mead calculator project built with HTML, CSS, JavaScript, Git, and GitHub Pages.</p>
+    <p>Batch Name:</p>
+    <input id="batchName" type="text" placeholder="Example: Pear Mead V1">
+
+    <p>Start Date:</p>
+    <input id="startDate" type="date">
+
+    <p>Status:</p>
+    <select id="batchStatus">
+      <option value="In Progress">In Progress</option>
+      <option value="Completed">Completed</option>
+    </select>
+
+    <p>Ingredients:</p>
+    <textarea id="ingredients" placeholder="Honey, water, yeast, nutrients, fruit, pectic enzyme..."></textarea>
+
+    <p>Starting SG:</p>
+    <input id="startingSg" type="number" step="0.001" placeholder="Example: 1.100">
+
+    <p>Final SG:</p>
+    <input id="finalSg" type="number" step="0.001" placeholder="Example: 0.998">
+
+    <button onclick="calculateBatchABV()">Calculate Batch ABV</button>
+
+    <p id="batchAbvResult"></p>
+
+    <p>Process Steps:</p>
+    <textarea id="processSteps" placeholder="Primary fermentation, racking, stabilization, backsweetening, bottling..."></textarea>
+
+    <p>Aroma / Flavor Notes:</p>
+    <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, issues, observations..."></textarea>
   </div>
 </section>
 
