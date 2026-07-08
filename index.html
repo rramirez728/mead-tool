@@ -3,19 +3,33 @@
 <head>
   <link rel="stylesheet" href="style.css">
   <title>Mead Maker's Toolkit</title>
-
 </head>
 
 <body>
 
 <header>
-    <h1>🍯 Mead Maker's Toolkit</h1>
-    <p>Your companion for crafting better mead.</p>
+  <h1>🍯 Mead Maker's Toolkit</h1>
+  <p>Your companion for crafting better mead.</p>
 </header>
 
-<div class="card">
+<nav>
+  <button onclick="showSection('home')">Home</button>
+  <button onclick="showSection('calculators')">Calculators</button>
+  <button onclick="showSection('batchNotes')">Batch Notes</button>
+  <button onclick="showSection('about')">About</button>
+</nav>
 
-    <h1>Original Gravity Calculator</h1>
+<section id="home" class="page-section hidden">
+  <div class="card">
+    <h2>Welcome</h2>
+    <p>Use this toolkit to plan mead recipes, estimate gravity, calculate ABV, and track batches.</p>
+  </div>
+</section>
+
+<section id="calculators" class="page-section">
+  <div class="card">
+
+    <h2>Original Gravity Calculator</h2>
 
     <p>Pounds of honey:</p>
     <input id="honey" type="number" placeholder="Example: 3">
@@ -31,7 +45,7 @@
 
     <hr>
 
-    <h1>ABV Calculator</h1>
+    <h2>ABV Calculator</h2>
 
     <p>Original Gravity:</p>
     <input id="og" type="number" step="0.001" placeholder="Example: 1.105">
@@ -47,7 +61,7 @@
 
     <hr>
 
-    <h1>Honey Needed Calculator</h2>
+    <h2>Honey Needed Calculator</h2>
 
     <p>Target Original Gravity:</p>
     <input id="targetOg" type="number" step="0.001" placeholder="Example: 1.100">
@@ -63,7 +77,7 @@
 
     <hr>
 
-    <h1>Water Needed Calculator</h2>
+    <h2>Water Needed Calculator</h2>
 
     <p>Pounds of honey:</p>
     <input id="waterHoney" type="number" placeholder="Example: 3">
@@ -77,7 +91,22 @@
 
     <p id="waterNeededResult"></p>
 
-</div>
+  </div>
+</section>
+
+<section id="batchNotes" class="page-section hidden">
+  <div class="card">
+    <h2>Batch Notes</h2>
+    <p>Batch note saving will be added soon.</p>
+  </div>
+</section>
+
+<section id="about" class="page-section hidden">
+  <div class="card">
+    <h2>About</h2>
+    <p>Mead Maker's Toolkit is a beginner-friendly mead calculator project built with HTML, CSS, JavaScript, Git, and GitHub Pages.</p>
+  </div>
+</section>
 
 <script src="script.js"></script>
 

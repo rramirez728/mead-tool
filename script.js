@@ -54,3 +54,13 @@ function calculateWaterNeeded() {
     document.getElementById("waterNeededResult").innerText =
         "Estimated Total Batch Volume: " + gallons.toFixed(2) + " gallons";
 }
+
+function showSection(sectionId) {
+    let sections = document.querySelectorAll(".page-section");
+
+    sections.forEach(function(section) {
+        section.classList.add("hidden");
+    });
+
+    document.getElementById(sectionId).classList.remove("hidden");
+}
