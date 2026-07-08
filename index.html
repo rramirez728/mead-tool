@@ -101,7 +101,11 @@
 <!-- Batch Page -->
 <section id="batchNotes" class="page-section hidden">
   <div class="card">
-    <h2>Batch Notes</h2>
+    <h2>Batch Log</h2>
+
+    <hr>
+
+    <h3>Batch Information</h3>
 
     <p>Batch Name:</p>
     <input id="batchName" type="text" placeholder="Example: Pear Mead V1">
@@ -111,12 +115,37 @@
 
     <p>Status:</p>
     <select id="batchStatus">
-      <option value="In Progress">In Progress</option>
-      <option value="Completed">Completed</option>
+      <option>In Progress</option>
+      <option>Completed</option>
+      <option>Paused</option>
     </select>
 
-    <p>Ingredients:</p>
-    <textarea id="ingredients" placeholder="Honey, water, yeast, nutrients, fruit, pectic enzyme..."></textarea>
+    <hr>
+
+    <h3>Ingredients</h3>
+
+    <div id="ingredientsList">
+      <div class="ingredient-row">
+        <input type="number" placeholder="Amount">
+        <select>
+          <option>lb</option>
+          <option>oz</option>
+          <option>g</option>
+          <option>kg</option>
+          <option>gal</option>
+          <option>tsp</option>
+          <option>tbsp</option>
+          <option>packet</option>
+        </select>
+        <input type="text" placeholder="Ingredient">
+      </div>
+    </div>
+
+    <button onclick="addIngredientField()">+ Add Ingredient</button>
+
+    <hr>
+
+    <h3>Gravity + ABV</h3>
 
     <p>Starting SG:</p>
     <input id="startingSg" type="number" step="0.001" placeholder="Example: 1.100">
@@ -128,11 +157,32 @@
 
     <p id="batchAbvResult"></p>
 
-    <p>Process Steps:</p>
-    <textarea id="processSteps" placeholder="Primary fermentation, racking, stabilization, backsweetening, bottling..."></textarea>
+    <hr>
 
-    <p>Aroma / Flavor Notes:</p>
+    <h3>Process Log</h3>
+
+    <div id="processStepsList">
+      <div class="process-row">
+        <input type="date">
+        <input type="text" placeholder="Example: Pitched yeast">
+      </div>
+    </div>
+
+    <button onclick="addProcessStep()">+ Add Step</button>
+
+    <hr>
+
+    <h3>Tasting Notes</h3>
+
+    <p>Aroma / Flavor / Clarity:</p>
     <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, issues, observations..."></textarea>
+
+    <hr>
+
+    <h3>Actions</h3>
+
+    <button>Save Batch</button>
+    <button>Export Spreadsheet</button>
   </div>
 </section>
 

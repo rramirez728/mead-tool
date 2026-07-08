@@ -113,3 +113,36 @@ textarea:focus {
     outline: none;
     border-color: #d89b3d;
 }
+
+.ingredient-row,
+.process-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.ingredient-row input,
+.ingredient-row select,
+.process-row input {
+    margin: 0;
+}
+
+.ingredient-row input:first-child {
+    width: 25%;
+}
+
+.ingredient-row select {
+    width: 25%;
+}
+
+.ingredient-row input:last-child {
+    width: 50%;
+}
+
+.process-row input:first-child {
+    width: 35%;
+}
+
+.process-row input:last-child {
+    width: 65%;
+}

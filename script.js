@@ -80,3 +80,41 @@ function calculateBatchABV() {
     document.getElementById("batchAbvResult").innerText =
         "Estimated Batch ABV: " + abv.toFixed(2) + "%";
 }
+
+function addIngredientField() {
+    let ingredientsList = document.getElementById("ingredientsList");
+
+    let row = document.createElement("div");
+    row.className = "ingredient-row";
+
+    row.innerHTML = `
+        <input type="number" placeholder="Amount">
+        <select>
+            <option>lb</option>
+            <option>oz</option>
+            <option>g</option>
+            <option>kg</option>
+            <option>gal</option>
+            <option>tsp</option>
+            <option>tbsp</option>
+            <option>packet</option>
+        </select>
+        <input type="text" placeholder="Ingredient">
+    `;
+
+    ingredientsList.appendChild(row);
+}
+
+function addProcessStep() {
+    let processStepsList = document.getElementById("processStepsList");
+
+    let row = document.createElement("div");
+    row.className = "process-row";
+
+    row.innerHTML = `
+        <input type="date">
+        <input type="text" placeholder="Next process step">
+    `;
+
+    processStepsList.appendChild(row);
+}
