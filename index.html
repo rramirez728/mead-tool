@@ -17,7 +17,7 @@
 <nav>
   <button onclick="showSection('home')">Home</button>
   <button onclick="showSection('calculators')">Calculators</button>
-  <button onclick="showSection('batchNotes')">Batch Notes</button>
+  <button onclick="showSection('batchNotes')">Batches</button>
   <button onclick="showSection('about')">About</button>
 </nav>
 
@@ -101,7 +101,35 @@
 <!-- Batch Page -->
 <section id="batchNotes" class="page-section hidden">
   <div class="card">
-    <h2>Batch Log</h2>
+
+    <!-- Batch Dashboard -->
+  <div class="section-card">
+  <h3>🍯 Batches Dashboard</h3>
+
+  <button onclick="createNewBatch()">+ Create New Batch</button>
+
+  <div class="batch-list">
+    <div class="batch-row" onclick="openBatch('Pear Mead V1')">
+      <span>Pear Mead V1</span>
+      <span class="status primary">Primary Stage</span>
+      <span>Last Updated: July 8</span>
+    </div>
+
+    <div class="batch-row" onclick="openBatch('Blackberry Mead')">
+      <span>Blackberry Mead</span>
+      <span class="status secondary">Secondary Stage</span>
+      <span>Last Updated: July 6</span>
+    </div>
+
+    <div class="batch-row" onclick="openBatch('Traditional #1')">
+      <span>Traditional #1</span>
+      <span class="status completed">Completed</span>
+      <span>Last Updated: June 28</span>
+    </div>
+  </div>
+</div>
+
+    <h1>Batch Manager</h1>
     <hr>
 
     <div class="section-card">
@@ -193,6 +221,7 @@
 
     <div class="section-card">
     <h3> Tasting Scorecard</h3>
+    <hr>
 
 <div class="scorecard">
 

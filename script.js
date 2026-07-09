@@ -142,3 +142,11 @@ function setRating(category, rating) {
     });
 
 }
+
+function openBatch(batchName) {
+    alert("Opening " + batchName + "...");
+}
+
+function createNewBatch() {
+    alert("Create New Batch feature coming soon.");
+}

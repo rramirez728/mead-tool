@@ -195,3 +195,46 @@ textarea:focus {
     transform: scale(1.2);
     background: none;
 }
+
+.batch-list {
+    margin-top: 20px;
+}
+
+.batch-row {
+    display: grid;
+    grid-template-columns: 1fr 160px 180px;
+    gap: 10px;
+    align-items: center;
+    background-color: #2a1d16;
+    border: 1px solid #5a3b25;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.batch-row:hover {
+    background-color: #4a3326;
+}
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.primary {
+    background-color: #d89b3d;
+    color: #1f1712;
+}
+
+.secondary {
+    background-color: #8f6fd1;
+    color: white;
+}
+
+.completed {
+    background-color: #6fa86f;
+    color: #1f1712;
+}
