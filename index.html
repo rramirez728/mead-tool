@@ -143,9 +143,13 @@
 
     <p>Status:</p>
     <select id="batchStatus">
-      <option>In Progress</option>
+      <option>Planning</option>
+      <option>Primary Stage</option>
+      <option>Secondary Stage</option>
+      <option>Stabilizing</option>
+      <option>Aging</option>
+      <option>Bottled</option>
       <option>Completed</option>
-      <option>Paused</option>
     </select>
 
     <hr>
@@ -297,7 +301,8 @@
 
     <h3>Actions</h3>
 
-    <button>Save Batch</button>
+    <button onclick="saveBatch()">Save Batch</button>
+    <button onclick="loadSavedBatch()">Load Saved Batch</button>
     <button>Export Spreadsheet</button>
   </div>
 </section>

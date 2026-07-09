@@ -143,10 +143,78 @@ function setRating(category, rating) {
 
 }
 
-function openBatch(batchName) {
-    alert("Opening " + batchName + "...");
+function createNewBatch() {
+    document.getElementById("batchName").value = "";
+    document.getElementById("startDate").value = "";
+    document.getElementById("batchStatus").value = "Planning";
+    document.getElementById("startingSg").value = "";
+    document.getElementById("finalSg").value = "";
+    document.getElementById("batchAbvResult").innerText = "";
+
+    alert("New batch form ready.");
 }
 
-function createNewBatch() {
-    alert("Create New Batch feature coming soon.");
+function openBatch(batchName) {
+    document.getElementById("batchName").value = batchName;
+
+    if (batchName === "Pear Mead V1") {
+        document.getElementById("startDate").value = "2026-06-28";
+        document.getElementById("batchStatus").value = "Primary Stage";
+        document.getElementById("startingSg").value = "1.100";
+    }
+
+    if (batchName === "Blackberry Mead") {
+        document.getElementById("startDate").value = "2026-06-11";
+        document.getElementById("batchStatus").value = "Secondary Stage";
+        document.getElementById("startingSg").value = "1.074";
+        document.getElementById("finalSg").value = "0.994";
+    }
+
+    if (batchName === "Traditional #1") {
+        document.getElementById("startDate").value = "2026-06-01";
+        document.getElementById("batchStatus").value = "Completed";
+        document.getElementById("startingSg").value = "1.090";
+        document.getElementById("finalSg").value = "1.000";
+    }
+
+    calculateBatchABV();
+}
+
+function saveBatch() {
+    let batch = {
+        name: document.getElementById("batchName").value,
+        startDate: document.getElementById("startDate").value,
+        status: document.getElementById("batchStatus").value,
+        startingSg: document.getElementById("startingSg").value,
+        finalSg: document.getElementById("finalSg").value,
+        batchAbv: document.getElementById("batchAbvResult").innerText,
+        tastingNotes: document.getElementById("tastingNotes").value,
+        additionalNotes: document.getElementById("additionalNotes").value
+    };
+
+    localStorage.setItem("savedBatch", JSON.stringify(batch));
+
+    alert("Batch saved successfully.");
+}
+
+function loadSavedBatch() {
+    let savedBatch = localStorage.getItem("savedBatch");
+
+    if (!savedBatch) {
+        alert("No saved batch found.");
+        return;
+    }
+
+    let batch = JSON.parse(savedBatch);
+
+    document.getElementById("batchName").value = batch.name;
+    document.getElementById("startDate").value = batch.startDate;
+    document.getElementById("batchStatus").value = batch.status;
+    document.getElementById("startingSg").value = batch.startingSg;
+    document.getElementById("finalSg").value = batch.finalSg;
+    document.getElementById("batchAbvResult").innerText = batch.batchAbv;
+    document.getElementById("tastingNotes").value = batch.tastingNotes;
+    document.getElementById("additionalNotes").value = batch.additionalNotes;
+
+    alert("Saved batch loaded.");
 }
