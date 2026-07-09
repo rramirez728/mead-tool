@@ -27,12 +27,20 @@
     }
 
     .card {
-      background-color: #33251c;
+      background-color: #2a1d16;
       max-width: 650px;
       margin: auto;
       padding: 30px;
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+
+    .section-card {
+    background-color: #33251c;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 25px 0;
+    box-shadow: 0 0 15px rgba(0,0,0,.4);
     }
 
     input {
@@ -145,4 +153,45 @@ textarea:focus {
 
 .process-row input:last-child {
     width: 65%;
+}
+
+.scorecard {
+    margin-top: 20px;
+}
+
+.rating-row {
+    display: grid;
+    grid-template-columns: 120px 80px 1fr 90px;
+    align-items: center;
+    gap: 10px;
+    margin: 18px 0;
+}
+
+.rating-label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.scale-label {
+    color: #d4c6a5;
+    font-size: 14px;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.stars button {
+    background: none;
+    color: #d89b3d;
+    font-size: 24px;
+    padding: 2px;
+    margin: 0;
+}
+
+.stars button:hover {
+    transform: scale(1.2);
+    background: none;
 }

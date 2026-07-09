@@ -118,3 +118,27 @@ function addProcessStep() {
 
     processStepsList.appendChild(row);
 }
+
+let ratings = {
+    aroma: 0,
+    flavor: 0,
+    clarity: 0,
+    sweetness: 0,
+    mouthfeel: 0
+};
+
+function setRating(category, rating) {
+    ratings[category] = rating;
+
+    let starContainer = document.querySelector(`[data-category="${category}"]`);
+    let stars = starContainer.querySelectorAll("button");
+
+    stars.forEach(function(star, index) {
+        if (index < rating) {
+            star.innerText = "★";
+        } else {
+            star.innerText = "☆";
+        }
+    });
+
+}

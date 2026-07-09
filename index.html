@@ -102,9 +102,9 @@
 <section id="batchNotes" class="page-section hidden">
   <div class="card">
     <h2>Batch Log</h2>
-
     <hr>
 
+    <div class="section-card">
     <h3>Batch Information</h3>
 
     <p>Batch Name:</p>
@@ -121,7 +121,9 @@
     </select>
 
     <hr>
+    </div>
 
+    <div class="section-card">
     <h3>Ingredients</h3>
 
     <div id="ingredientsList">
@@ -144,7 +146,9 @@
     <button onclick="addIngredientField()">+ Add Ingredient</button>
 
     <hr>
+    </div>
 
+    <div class="section-card">
     <h3>Gravity + ABV</h3>
 
     <p>Starting SG:</p>
@@ -158,7 +162,9 @@
     <p id="batchAbvResult"></p>
 
     <hr>
+    </div>
 
+    <div class="section-card">
     <h3>Process Log</h3>
 
     <div id="processStepsList">
@@ -171,13 +177,94 @@
     <button onclick="addProcessStep()">+ Add Step</button>
 
     <hr>
+    </div>
 
+    <div class="section-card">
     <h3>Tasting Notes</h3>
 
     <p>Aroma / Flavor / Clarity:</p>
     <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, issues, observations..."></textarea>
 
+    <p>Additional Notes:</p>
+    <textarea id="additionalNotes" placeholder="Anything else you want to remember about this batch..."></textarea>
+
     <hr>
+    </div>
+
+    <div class="section-card">
+    <h3> Tasting Scorecard</h3>
+
+<div class="scorecard">
+
+  <div class="rating-row">
+    <span class="rating-label">Aroma</span>
+    <span class="scale-label">Weak</span>
+    <div class="stars" data-category="aroma">
+      <button onclick="setRating('aroma', 1)">☆</button>
+      <button onclick="setRating('aroma', 2)">☆</button>
+      <button onclick="setRating('aroma', 3)">☆</button>
+      <button onclick="setRating('aroma', 4)">☆</button>
+      <button onclick="setRating('aroma', 5)">☆</button>
+    </div>
+    <span class="scale-label">Strong</span>
+  </div>
+
+  <div class="rating-row">
+    <span class="rating-label">Flavor</span>
+    <span class="scale-label">Light</span>
+    <div class="stars" data-category="flavor">
+      <button onclick="setRating('flavor', 1)">☆</button>
+      <button onclick="setRating('flavor', 2)">☆</button>
+      <button onclick="setRating('flavor', 3)">☆</button>
+      <button onclick="setRating('flavor', 4)">☆</button>
+      <button onclick="setRating('flavor', 5)">☆</button>
+    </div>
+    <span class="scale-label">Bold</span>
+  </div>
+
+  <div class="rating-row">
+    <span class="rating-label">Clarity</span>
+    <span class="scale-label">Cloudy</span>
+    <div class="stars" data-category="clarity">
+      <button onclick="setRating('clarity', 1)">☆</button>
+      <button onclick="setRating('clarity', 2)">☆</button>
+      <button onclick="setRating('clarity', 3)">☆</button>
+      <button onclick="setRating('clarity', 4)">☆</button>
+      <button onclick="setRating('clarity', 5)">☆</button>
+    </div>
+    <span class="scale-label">Brilliant</span>
+  </div>
+
+  <div class="rating-row">
+    <span class="rating-label">Sweetness</span>
+    <span class="scale-label">Dry</span>
+    <div class="stars" data-category="sweetness">
+      <button onclick="setRating('sweetness', 1)">☆</button>
+      <button onclick="setRating('sweetness', 2)">☆</button>
+      <button onclick="setRating('sweetness', 3)">☆</button>
+      <button onclick="setRating('sweetness', 4)">☆</button>
+      <button onclick="setRating('sweetness', 5)">☆</button>
+    </div>
+    <span class="scale-label">Sweet</span>
+  </div>
+
+  <div class="rating-row">
+    <span class="rating-label">Mouthfeel</span>
+    <span class="scale-label">Light</span>
+    <div class="stars" data-category="mouthfeel">
+      <button onclick="setRating('mouthfeel', 1)">☆</button>
+      <button onclick="setRating('mouthfeel', 2)">☆</button>
+      <button onclick="setRating('mouthfeel', 3)">☆</button>
+      <button onclick="setRating('mouthfeel', 4)">☆</button>
+      <button onclick="setRating('mouthfeel', 5)">☆</button>
+    </div>
+    <span class="scale-label">Full</span>
+  </div>
+
+</div>
+
+
+</div>
 
     <h3>Actions</h3>
 
