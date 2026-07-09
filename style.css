@@ -238,3 +238,23 @@ textarea:focus {
     background-color: #6fa86f;
     color: #1f1712;
 }
+
+.hidden {
+    display: none;
+}
+
+.trash-btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.ingredient-row,
+.process-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
