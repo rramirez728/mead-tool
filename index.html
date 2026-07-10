@@ -1,286 +1,187 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <link rel="stylesheet" href="style.css">
-  <title>Mead Maker's Toolkit</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Raven Meadery Toolkit</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-  <h1>🍯 Mead Maker's Toolkit</h1>
-  <p>Your companion for crafting better mead.</p>
+<header class="site-header">
+    <div class="sigil">◆</div>
+    <h1>Crystal Raven</h1>
+    <p>Meadery Toolkit</p>
+    <p class="motto">Ancient • Sacred • Unbroken</p>
+
+    <nav>
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('calculators')">Calculators</button>
+        <button onclick="showSection('batches')">Batch Grimoire</button>
+        <button onclick="showSection('about')">About</button>
+    </nav>
 </header>
 
-<nav>
-  <button onclick="showSection('home')">Home</button>
-  <button onclick="showSection('calculators')">Calculators</button>
-  <button onclick="showSection('batchNotes')">Batches</button>
-  <button onclick="showSection('about')">About</button>
-</nav>
+<main>
 
-<section id="home" class="page-section hidden">
-  <div class="card">
-    <h2>Welcome</h2>
-    <p>Use this toolkit to plan mead recipes, estimate gravity, calculate ABV, and track batches.</p>
-  </div>
+<section id="home" class="page-section">
+    <div class="card hero-card">
+        <h2>𖤐 The Crystal Raven Grimoire 𖤐</h2>
+        <p>
+            A dark brewing journal for recording sacred recipes, gravity readings,
+            fermentation rites, tasting notes, and hidden transformations.
+        </p>
+    </div>
 </section>
 
-<section id="calculators" class="page-section">
-  <div class="card">
-    <h2>Original Gravity Calculator</h2>
+<section id="calculators" class="page-section hidden">
+    <div class="card">
+        <h2>Alchemical Calculators</h2>
 
-    <p>Pounds of honey:</p>
-    <input id="honey" type="number" placeholder="Example: 3">
+        <h3>Original Gravity</h3>
+        <input id="honey" type="number" placeholder="Honey in lb">
+        <input id="gallons" type="number" placeholder="Batch size in gallons">
+        <button onclick="calculateOG()">Calculate OG</button>
+        <p id="result"></p>
 
-    <p>Batch size in gallons:</p>
-    <input id="gallons" type="number" placeholder="Example: 1">
+        <h3>ABV</h3>
+        <input id="og" type="number" placeholder="Original Gravity">
+        <input id="fg" type="number" placeholder="Final Gravity">
+        <button onclick="calculateABV()">Calculate ABV</button>
+        <p id="abvResult"></p>
 
-    <br>
+        <h3>Honey Needed</h3>
+        <input id="targetOg" type="number" placeholder="Target OG">
+        <input id="targetGallons" type="number" placeholder="Gallons">
+        <button onclick="calculateHoneyNeeded()">Calculate Honey</button>
+        <p id="honeyNeededResult"></p>
 
-    <button onclick="calculateOG()">Calculate Original Gravity</button>
-    <p id="result"></p>
-
-    <hr>
-
-    <h2>ABV Calculator</h2>
-
-    <p>Original Gravity:</p>
-    <input id="og" type="number" step="0.001" placeholder="Example: 1.105">
-
-    <p>Final Gravity:</p>
-    <input id="fg" type="number" step="0.001" placeholder="Example: 0.998">
-
-    <br>
-
-    <button onclick="calculateABV()">Calculate ABV</button>
-    <p id="abvResult"></p>
-
-    <hr>
-
-    <h2>Honey Needed Calculator</h2>
-
-    <p>Target Original Gravity:</p>
-    <input id="targetOg" type="number" step="0.001" placeholder="Example: 1.100">
-
-    <p>Batch size in gallons:</p>
-    <input id="targetGallons" type="number" placeholder="Example: 3">
-
-    <br><br>
-
-    <button onclick="calculateHoneyNeeded()">Calculate Honey Needed</button>
-    <p id="honeyNeededResult"></p>
-
-    <hr>
-
-    <h2>Water Needed Calculator</h2>
-
-    <p>Pounds of honey:</p>
-    <input id="waterHoney" type="number" placeholder="Example: 3">
-
-    <p>Target Original Gravity:</p>
-    <input id="waterTargetOg" type="number" step="0.001" placeholder="Example: 1.100">
-
-    <br><br>
-
-    <button onclick="calculateWaterNeeded()">Calculate Water Needed</button>
-    <p id="waterNeededResult"></p>
-  </div>
+        <h3>Water Needed</h3>
+        <input id="waterHoney" type="number" placeholder="Honey in lb">
+        <input id="waterTargetOg" type="number" placeholder="Target OG">
+        <button onclick="calculateWaterNeeded()">Calculate Water</button>
+        <p id="waterNeededResult"></p>
+    </div>
 </section>
 
-<section id="batchNotes" class="page-section hidden">
-  <div class="card">
-
-    <div class="section-card">
-      <h3>🍯 Batches Dashboard</h3>
-
-      <button onclick="createNewBatch()">+ Create New Batch</button>
-
-      <div id="batchList" class="batch-list">
-        <!-- Saved batches will appear here -->
-      </div>
+<section id="batches" class="page-section hidden">
+    <div class="card">
+        <h2>Batch Grimoire</h2>
+        <button onclick="createNewBatch()">+ New Batch</button>
+        <button onclick="exportBatches()">Export Grimoire</button>
+        <input type="file" id="importFile" accept=".json" onchange="importBatches(event)">
+        <div id="batchList"></div>
     </div>
 
-    <div id="batchForm" class="hidden">
+    <div id="batchForm" class="card hidden">
+        <input type="hidden" id="currentBatchId">
 
-      <h1>Batch Manager</h1>
+        <h2>Batch Record</h2>
 
-      <div class="section-card">
-        <h3>Batch Information</h3>
+        <label>Batch Name</label>
+        <input id="batchName" type="text" placeholder="Example: Blackberry Mead">
 
-        <input id="currentBatchId" type="hidden">
-
-        <p>Batch Name:</p>
-        <input id="batchName" type="text" placeholder="Example: Pear Mead V1">
-
-        <p>Start Date:</p>
+        <label>Start Date</label>
         <input id="startDate" type="date">
 
-        <p>Status:</p>
+        <label>Status</label>
         <select id="batchStatus">
-          <option>Planning</option>
-          <option>Primary Stage</option>
-          <option>Secondary Stage</option>
-          <option>Stabilizing</option>
-          <option>Aging</option>
-          <option>Bottled</option>
-          <option>Completed</option>
+            <option>Planning</option>
+            <option>Primary Stage</option>
+            <option>Secondary Stage</option>
+            <option>Conditioning</option>
+            <option>Completed</option>
         </select>
-      </div>
 
-      <div class="section-card">
+        <div class="timeline-box">
+            <h3>Fermentation Omen</h3>
+            <p id="batchTimeline">Enter a start date to reveal the batch age.</p>
+        </div>
+
         <h3>Ingredients</h3>
-
-        <div id="ingredientsList">
-          <div class="ingredient-row">
-            <input type="number" placeholder="Amount">
-            <select>
-              <option>lb</option>
-              <option>oz</option>
-              <option>g</option>
-              <option>kg</option>
-              <option>gal</option>
-              <option>tsp</option>
-              <option>tbsp</option>
-              <option>packet</option>
-            </select>
-            <input type="text" placeholder="Ingredient">
-          </div>
-        </div>
-
+        <div id="ingredientsList"></div>
         <button onclick="addIngredientField()">+ Add Ingredient</button>
-      </div>
 
-      <div class="section-card">
-        <h3>Gravity + ABV</h3>
-
-        <p>Starting SG:</p>
-        <input id="startingSg" type="number" step="0.001" placeholder="Example: 1.100">
-
-        <p>Final SG:</p>
-        <input id="finalSg" type="number" step="0.001" placeholder="Example: 0.998">
-
+        <h3>Gravity & ABV</h3>
+        <input id="startingSg" type="number" placeholder="Starting SG">
+        <input id="finalSg" type="number" placeholder="Final SG">
         <button onclick="calculateBatchABV()">Calculate Batch ABV</button>
-
         <p id="batchAbvResult"></p>
-      </div>
 
-      <div class="section-card">
         <h3>Process Log</h3>
-
-        <div id="processStepsList">
-          <div class="process-row">
-            <input type="date">
-            <input type="text" placeholder="Example: Pitched yeast">
-          </div>
-        </div>
-
+        <div id="processStepsList"></div>
         <button onclick="addProcessStep()">+ Add Step</button>
-      </div>
 
-      <div class="section-card">
         <h3>Tasting Notes</h3>
+        <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, sweetness..."></textarea>
 
-        <p>Aroma / Flavor / Clarity:</p>
-        <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, issues, observations..."></textarea>
+        <h3>Additional Notes</h3>
+        <textarea id="additionalNotes" placeholder="Backsweetening, stabilization, bottling notes..."></textarea>
 
-        <p>Additional Notes:</p>
-        <textarea id="additionalNotes" placeholder="Anything else you want to remember about this batch..."></textarea>
-      </div>
+        <h3>Tasting Sigils</h3>
 
-      <div class="section-card">
-        <h3>Tasting Scorecard</h3>
-
-        <div class="scorecard">
-
-          <div class="rating-row">
-            <span class="rating-label">Aroma</span>
-            <span class="scale-label">Weak</span>
-            <div class="stars" data-category="aroma">
-              <button onclick="setRating('aroma', 1)">☆</button>
-              <button onclick="setRating('aroma', 2)">☆</button>
-              <button onclick="setRating('aroma', 3)">☆</button>
-              <button onclick="setRating('aroma', 4)">☆</button>
-              <button onclick="setRating('aroma', 5)">☆</button>
-            </div>
-            <span class="scale-label">Strong</span>
-          </div>
-
-          <div class="rating-row">
-            <span class="rating-label">Flavor</span>
-            <span class="scale-label">Light</span>
-            <div class="stars" data-category="flavor">
-              <button onclick="setRating('flavor', 1)">☆</button>
-              <button onclick="setRating('flavor', 2)">☆</button>
-              <button onclick="setRating('flavor', 3)">☆</button>
-              <button onclick="setRating('flavor', 4)">☆</button>
-              <button onclick="setRating('flavor', 5)">☆</button>
-            </div>
-            <span class="scale-label">Bold</span>
-          </div>
-
-          <div class="rating-row">
-            <span class="rating-label">Clarity</span>
-            <span class="scale-label">Cloudy</span>
-            <div class="stars" data-category="clarity">
-              <button onclick="setRating('clarity', 1)">☆</button>
-              <button onclick="setRating('clarity', 2)">☆</button>
-              <button onclick="setRating('clarity', 3)">☆</button>
-              <button onclick="setRating('clarity', 4)">☆</button>
-              <button onclick="setRating('clarity', 5)">☆</button>
-            </div>
-            <span class="scale-label">Brilliant</span>
-          </div>
-
-          <div class="rating-row">
-            <span class="rating-label">Sweetness</span>
-            <span class="scale-label">Dry</span>
-            <div class="stars" data-category="sweetness">
-              <button onclick="setRating('sweetness', 1)">☆</button>
-              <button onclick="setRating('sweetness', 2)">☆</button>
-              <button onclick="setRating('sweetness', 3)">☆</button>
-              <button onclick="setRating('sweetness', 4)">☆</button>
-              <button onclick="setRating('sweetness', 5)">☆</button>
-            </div>
-            <span class="scale-label">Sweet</span>
-          </div>
-
-          <div class="rating-row">
-            <span class="rating-label">Mouthfeel</span>
-            <span class="scale-label">Light</span>
-            <div class="stars" data-category="mouthfeel">
-              <button onclick="setRating('mouthfeel', 1)">☆</button>
-              <button onclick="setRating('mouthfeel', 2)">☆</button>
-              <button onclick="setRating('mouthfeel', 3)">☆</button>
-              <button onclick="setRating('mouthfeel', 4)">☆</button>
-              <button onclick="setRating('mouthfeel', 5)">☆</button>
-            </div>
-            <span class="scale-label">Full</span>
-          </div>
-
+        <div class="rating" data-category="aroma">
+            <span>Aroma</span>
+            <button onclick="setRating('aroma',1)">☆</button>
+            <button onclick="setRating('aroma',2)">☆</button>
+            <button onclick="setRating('aroma',3)">☆</button>
+            <button onclick="setRating('aroma',4)">☆</button>
+            <button onclick="setRating('aroma',5)">☆</button>
         </div>
-      </div>
 
-      <div class="section-card">
-        <h3>Batch Actions</h3>
+        <div class="rating" data-category="flavor">
+            <span>Flavor</span>
+            <button onclick="setRating('flavor',1)">☆</button>
+            <button onclick="setRating('flavor',2)">☆</button>
+            <button onclick="setRating('flavor',3)">☆</button>
+            <button onclick="setRating('flavor',4)">☆</button>
+            <button onclick="setRating('flavor',5)">☆</button>
+        </div>
 
-        <button onclick="saveBatch()">Save Batch</button>
-        <button>Export Spreadsheet</button>
-      </div>
+        <div class="rating" data-category="clarity">
+            <span>Clarity</span>
+            <button onclick="setRating('clarity',1)">☆</button>
+            <button onclick="setRating('clarity',2)">☆</button>
+            <button onclick="setRating('clarity',3)">☆</button>
+            <button onclick="setRating('clarity',4)">☆</button>
+            <button onclick="setRating('clarity',5)">☆</button>
+        </div>
 
+        <div class="rating" data-category="sweetness">
+            <span>Sweetness</span>
+            <button onclick="setRating('sweetness',1)">☆</button>
+            <button onclick="setRating('sweetness',2)">☆</button>
+            <button onclick="setRating('sweetness',3)">☆</button>
+            <button onclick="setRating('sweetness',4)">☆</button>
+            <button onclick="setRating('sweetness',5)">☆</button>
+        </div>
+
+        <div class="rating" data-category="mouthfeel">
+            <span>Mouthfeel</span>
+            <button onclick="setRating('mouthfeel',1)">☆</button>
+            <button onclick="setRating('mouthfeel',2)">☆</button>
+            <button onclick="setRating('mouthfeel',3)">☆</button>
+            <button onclick="setRating('mouthfeel',4)">☆</button>
+            <button onclick="setRating('mouthfeel',5)">☆</button>
+        </div>
+
+        <button class="save-btn" onclick="saveBatch()">Save Batch</button>
     </div>
-
-  </div>
 </section>
 
 <section id="about" class="page-section hidden">
-  <div class="card">
-    <h2>About</h2>
-    <p>Mead Maker's Toolkit is a beginner-friendly mead calculator project built with HTML, CSS, JavaScript, Git, and GitHub Pages.</p>
-  </div>
+    <div class="card">
+        <h2>About Crystal Raven</h2>
+        <p>
+            Crystal Raven Meadery is a ceremonial mead concept inspired by ravens,
+            crystals, medieval manuscripts, alchemical symbols, candlelit cellars,
+            and the sacred transformation of honey into wine.
+        </p>
+    </div>
 </section>
 
-<script src="script.js"></script>
+</main>
 
+<script src="script.js"></script>
 </body>
 </html>
