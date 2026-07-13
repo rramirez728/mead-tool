@@ -8,179 +8,349 @@
 </head>
 <body>
 
-<header class="site-header">
-    <div class="sigil">◆</div>
-    <h1>Crystal Raven</h1>
-    <p>Meadery Toolkit</p>
-    <p class="motto">Ancient • Sacred • Unbroken</p>
+<div class="app-shell">
 
-    <nav>
-        <button onclick="showSection('home')">Home</button>
-        <button onclick="showSection('calculators')">Calculators</button>
-        <button onclick="showSection('batches')">Batch Grimoire</button>
-        <button onclick="showSection('about')">About</button>
-    </nav>
-</header>
-
-<main>
-
-<section id="home" class="page-section">
-    <div class="card hero-card">
-        <h2>𖤐 The Crystal Raven Grimoire 𖤐</h2>
-        <p>
-            A dark brewing journal for recording sacred recipes, gravity readings,
-            fermentation rites, tasting notes, and hidden transformations.
-        </p>
-    </div>
-</section>
-
-<section id="calculators" class="page-section hidden">
-    <div class="card">
-        <h2>Alchemical Calculators</h2>
-
-        <h3>Original Gravity</h3>
-        <input id="honey" type="number" placeholder="Honey in lb">
-        <input id="gallons" type="number" placeholder="Batch size in gallons">
-        <button onclick="calculateOG()">Calculate OG</button>
-        <p id="result"></p>
-
-        <h3>ABV</h3>
-        <input id="og" type="number" placeholder="Original Gravity">
-        <input id="fg" type="number" placeholder="Final Gravity">
-        <button onclick="calculateABV()">Calculate ABV</button>
-        <p id="abvResult"></p>
-
-        <h3>Honey Needed</h3>
-        <input id="targetOg" type="number" placeholder="Target OG">
-        <input id="targetGallons" type="number" placeholder="Gallons">
-        <button onclick="calculateHoneyNeeded()">Calculate Honey</button>
-        <p id="honeyNeededResult"></p>
-
-        <h3>Water Needed</h3>
-        <input id="waterHoney" type="number" placeholder="Honey in lb">
-        <input id="waterTargetOg" type="number" placeholder="Target OG">
-        <button onclick="calculateWaterNeeded()">Calculate Water</button>
-        <p id="waterNeededResult"></p>
-    </div>
-</section>
-
-<section id="batches" class="page-section hidden">
-    <div class="card">
-        <h2>Batch Grimoire</h2>
-        <button onclick="createNewBatch()">+ New Batch</button>
-        <button onclick="exportBatches()">Export Grimoire</button>
-        <input type="file" id="importFile" accept=".json" onchange="importBatches(event)">
-        <div id="batchList"></div>
-    </div>
-
-    <div id="batchForm" class="card hidden">
-        <input type="hidden" id="currentBatchId">
-
-        <h2>Batch Record</h2>
-
-        <label>Batch Name</label>
-        <input id="batchName" type="text" placeholder="Example: Blackberry Mead">
-
-        <label>Start Date</label>
-        <input id="startDate" type="date">
-
-        <label>Status</label>
-        <select id="batchStatus">
-            <option>Planning</option>
-            <option>Primary Stage</option>
-            <option>Secondary Stage</option>
-            <option>Conditioning</option>
-            <option>Completed</option>
-        </select>
-
-        <div class="timeline-box">
-            <h3>Fermentation Omen</h3>
-            <p id="batchTimeline">Enter a start date to reveal the batch age.</p>
+    <aside class="sidebar">
+        <div class="logo-panel">
+            <div class="ornament top-ornament">☿</div>
+            <div class="raven-mark">𓄿</div>
+            <h1>Crystal<br>Raven</h1>
+            <p>Meadery</p>
+            <span>Ancient • Sacred • Unbroken</span>
         </div>
 
-        <h3>Ingredients</h3>
-        <div id="ingredientsList"></div>
-        <button onclick="addIngredientField()">+ Add Ingredient</button>
+        <nav class="main-nav">
+            <button onclick="showSection('home')" class="nav-btn active">☉ Home</button>
+            <button onclick="showSection('calculators')" class="nav-btn">🜃 Calculators</button>
+            <button onclick="showSection('batches')" class="nav-btn">🜁 Batch Grimoire</button>
+            <button onclick="showSection('about')" class="nav-btn">🜔 About</button>
+        </nav>
 
-        <h3>Gravity & ABV</h3>
-        <input id="startingSg" type="number" placeholder="Starting SG">
-        <input id="finalSg" type="number" placeholder="Final SG">
-        <button onclick="calculateBatchABV()">Calculate Batch ABV</button>
-        <p id="batchAbvResult"></p>
-
-        <h3>Process Log</h3>
-        <div id="processStepsList"></div>
-        <button onclick="addProcessStep()">+ Add Step</button>
-
-        <h3>Tasting Notes</h3>
-        <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, sweetness..."></textarea>
-
-        <h3>Additional Notes</h3>
-        <textarea id="additionalNotes" placeholder="Backsweetening, stabilization, bottling notes..."></textarea>
-
-        <h3>Tasting Sigils</h3>
-
-        <div class="rating" data-category="aroma">
-            <span>Aroma</span>
-            <button onclick="setRating('aroma',1)">☆</button>
-            <button onclick="setRating('aroma',2)">☆</button>
-            <button onclick="setRating('aroma',3)">☆</button>
-            <button onclick="setRating('aroma',4)">☆</button>
-            <button onclick="setRating('aroma',5)">☆</button>
+        <div class="sidebar-note">
+            <p>Not all transformations are visible.</p>
+            <p>Trust the rite.</p>
+            <div class="alchemy-divider">☉</div>
         </div>
+    </aside>
 
-        <div class="rating" data-category="flavor">
-            <span>Flavor</span>
-            <button onclick="setRating('flavor',1)">☆</button>
-            <button onclick="setRating('flavor',2)">☆</button>
-            <button onclick="setRating('flavor',3)">☆</button>
-            <button onclick="setRating('flavor',4)">☆</button>
-            <button onclick="setRating('flavor',5)">☆</button>
-        </div>
+    <main class="main-content">
 
-        <div class="rating" data-category="clarity">
-            <span>Clarity</span>
-            <button onclick="setRating('clarity',1)">☆</button>
-            <button onclick="setRating('clarity',2)">☆</button>
-            <button onclick="setRating('clarity',3)">☆</button>
-            <button onclick="setRating('clarity',4)">☆</button>
-            <button onclick="setRating('clarity',5)">☆</button>
-        </div>
+        <section id="home" class="page-section">
+            <div class="hero">
+                <div class="alchemy-row">☿  ☉  🜍  🜃</div>
 
-        <div class="rating" data-category="sweetness">
-            <span>Sweetness</span>
-            <button onclick="setRating('sweetness',1)">☆</button>
-            <button onclick="setRating('sweetness',2)">☆</button>
-            <button onclick="setRating('sweetness',3)">☆</button>
-            <button onclick="setRating('sweetness',4)">☆</button>
-            <button onclick="setRating('sweetness',5)">☆</button>
-        </div>
+                <div class="hero-copy">
+                    <h2>Welcome, Meadsmith</h2>
+                    <p>
+                        Track your mead making journey with precision,
+                        intention, and alchemical insight.
+                    </p>
+                    <p>
+                        Every batch holds a story. Record it. Refine it.
+                        Raise a glass to the craft.
+                    </p>
+                </div>
 
-        <div class="rating" data-category="mouthfeel">
-            <span>Mouthfeel</span>
-            <button onclick="setRating('mouthfeel',1)">☆</button>
-            <button onclick="setRating('mouthfeel',2)">☆</button>
-            <button onclick="setRating('mouthfeel',3)">☆</button>
-            <button onclick="setRating('mouthfeel',4)">☆</button>
-            <button onclick="setRating('mouthfeel',5)">☆</button>
-        </div>
+                <div class="hero-raven">
+                    <div class="raven-art">𓄿</div>
+                </div>
+            </div>
 
-        <button class="save-btn" onclick="saveBatch()">Save Batch</button>
-    </div>
-</section>
+            <div class="dashboard-grid">
 
-<section id="about" class="page-section hidden">
-    <div class="card">
-        <h2>About Crystal Raven</h2>
-        <p>
-            Crystal Raven Meadery is a ceremonial mead concept inspired by ravens,
-            crystals, medieval manuscripts, alchemical symbols, candlelit cellars,
-            and the sacred transformation of honey into wine.
-        </p>
-    </div>
-</section>
+                <section class="lux-panel">
+                    <div class="panel-header">
+                        <span>☉</span>
+                        <h3>Batch Grimoire</h3>
+                        <span>☉</span>
+                    </div>
 
-</main>
+                    <button class="small-gold-btn" onclick="showSection('batches')">
+                        + New Batch
+                    </button>
+
+                    <div class="preview-list">
+                        <div class="preview-row">
+                            <span class="alchemy-symbol">🜁</span>
+                            <div>
+                                <strong>Pear Mead V1</strong>
+                                <p>Started: June 28, 2026</p>
+                            </div>
+                            <div>
+                                <em>Primary Stage</em>
+                                <p>Day 11</p>
+                            </div>
+                            <span>›</span>
+                        </div>
+
+                        <div class="preview-row">
+                            <span class="alchemy-symbol">☿</span>
+                            <div>
+                                <strong>Blackberry Mead</strong>
+                                <p>Started: June 11, 2026</p>
+                            </div>
+                            <div>
+                                <em>Secondary Stage</em>
+                                <p>Day 28</p>
+                            </div>
+                            <span>›</span>
+                        </div>
+
+                        <div class="preview-row">
+                            <span class="alchemy-symbol">△</span>
+                            <div>
+                                <strong>Traditional #1</strong>
+                                <p>Started: June 1, 2026</p>
+                            </div>
+                            <div>
+                                <em>Completed</em>
+                                <p>ABV: 11.81%</p>
+                            </div>
+                            <span>›</span>
+                        </div>
+                    </div>
+
+                    <button class="link-btn" onclick="showSection('batches')">
+                        ⟡ View All Batches ⟡
+                    </button>
+                </section>
+
+                <section class="lux-panel">
+                    <div class="panel-header">
+                        <span>☉</span>
+                        <h3>Quick Calculators</h3>
+                        <span>🜍</span>
+                    </div>
+
+                    <div class="calculator-preview-grid">
+                        <button onclick="showSection('calculators')" class="calc-tile">
+                            <span>⊖</span>
+                            <strong>Original Gravity</strong>
+                            <p>Calculate OG</p>
+                        </button>
+
+                        <button onclick="showSection('calculators')" class="calc-tile">
+                            <span>♄</span>
+                            <strong>ABV Calculator</strong>
+                            <p>Calculate ABV</p>
+                        </button>
+
+                        <button onclick="showSection('calculators')" class="calc-tile">
+                            <span>△</span>
+                            <strong>Honey Needed</strong>
+                            <p>For Target OG</p>
+                        </button>
+
+                        <button onclick="showSection('calculators')" class="calc-tile">
+                            <span>🜄</span>
+                            <strong>Water Needed</strong>
+                            <p>For Target OG</p>
+                        </button>
+                    </div>
+
+                    <button class="link-btn" onclick="showSection('calculators')">
+                        ⟡ Open All Calculators ⟡
+                    </button>
+                </section>
+
+            </div>
+
+            <footer class="lux-footer">
+                <span>☿</span>
+                <p>Ancient • Sacred • Unbroken</p>
+                <span>☿</span>
+            </footer>
+        </section>
+
+        <section id="calculators" class="page-section hidden">
+            <div class="lux-panel full-panel">
+                <div class="panel-header">
+                    <span>⊖</span>
+                    <h3>Alchemical Calculators</h3>
+                    <span>⊖</span>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-card">
+                        <h4>Original Gravity</h4>
+                        <input id="honey" type="number" placeholder="Honey in lb">
+                        <input id="gallons" type="number" placeholder="Batch size in gallons">
+                        <button onclick="calculateOG()">Calculate OG</button>
+                        <p id="result"></p>
+                    </div>
+
+                    <div class="form-card">
+                        <h4>ABV</h4>
+                        <input id="og" type="number" placeholder="Original Gravity">
+                        <input id="fg" type="number" placeholder="Final Gravity">
+                        <button onclick="calculateABV()">Calculate ABV</button>
+                        <p id="abvResult"></p>
+                    </div>
+
+                    <div class="form-card">
+                        <h4>Honey Needed</h4>
+                        <input id="targetOg" type="number" placeholder="Target OG">
+                        <input id="targetGallons" type="number" placeholder="Gallons">
+                        <button onclick="calculateHoneyNeeded()">Calculate Honey</button>
+                        <p id="honeyNeededResult"></p>
+                    </div>
+
+                    <div class="form-card">
+                        <h4>Water Needed</h4>
+                        <input id="waterHoney" type="number" placeholder="Honey in lb">
+                        <input id="waterTargetOg" type="number" placeholder="Target OG">
+                        <button onclick="calculateWaterNeeded()">Calculate Water</button>
+                        <p id="waterNeededResult"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="batches" class="page-section hidden">
+            <div class="lux-panel full-panel">
+                <div class="panel-header">
+                    <span>🜁</span>
+                    <h3>Batch Grimoire</h3>
+                    <span>🜁</span>
+                </div>
+
+                <div class="button-row">
+                    <button onclick="createNewBatch()">+ New Batch</button>
+                    <button onclick="exportBatches()">Export Grimoire</button>
+                    <label class="import-label">
+                        Import Grimoire
+                        <input type="file" id="importFile" accept=".json" onchange="importBatches(event)">
+                    </label>
+                </div>
+
+                <div id="batchList"></div>
+            </div>
+
+            <div id="batchForm" class="lux-panel full-panel hidden">
+                <input type="hidden" id="currentBatchId">
+
+                <div class="panel-header">
+                    <span>☿</span>
+                    <h3>Batch Record</h3>
+                    <span>☿</span>
+                </div>
+
+                <label>Batch Name</label>
+                <input id="batchName" type="text" placeholder="Example: Blackberry Mead">
+
+                <label>Start Date</label>
+                <input id="startDate" type="date">
+
+                <label>Status</label>
+                <select id="batchStatus">
+                    <option>Planning</option>
+                    <option>Primary Stage</option>
+                    <option>Secondary Stage</option>
+                    <option>Conditioning</option>
+                    <option>Completed</option>
+                </select>
+
+                <div class="timeline-box">
+                    <h4>Fermentation Omen</h4>
+                    <p id="batchTimeline">Enter a start date to reveal the batch age.</p>
+                </div>
+
+                <h4>Ingredients</h4>
+                <div id="ingredientsList"></div>
+                <button onclick="addIngredientField()">+ Add Ingredient</button>
+
+                <h4>Gravity & ABV</h4>
+                <input id="startingSg" type="number" placeholder="Starting SG">
+                <input id="finalSg" type="number" placeholder="Final SG">
+                <button onclick="calculateBatchABV()">Calculate Batch ABV</button>
+                <p id="batchAbvResult"></p>
+
+                <h4>Process Log</h4>
+                <div id="processStepsList"></div>
+                <button onclick="addProcessStep()">+ Add Step</button>
+
+                <h4>Tasting Notes</h4>
+                <textarea id="tastingNotes" placeholder="Aroma, flavor, clarity, sweetness..."></textarea>
+
+                <h4>Additional Notes</h4>
+                <textarea id="additionalNotes" placeholder="Backsweetening, stabilization, bottling notes..."></textarea>
+
+                <h4>Tasting Sigils</h4>
+
+                <div class="rating" data-category="aroma">
+                    <span>Aroma</span>
+                    <button onclick="setRating('aroma',1)">☆</button>
+                    <button onclick="setRating('aroma',2)">☆</button>
+                    <button onclick="setRating('aroma',3)">☆</button>
+                    <button onclick="setRating('aroma',4)">☆</button>
+                    <button onclick="setRating('aroma',5)">☆</button>
+                </div>
+
+                <div class="rating" data-category="flavor">
+                    <span>Flavor</span>
+                    <button onclick="setRating('flavor',1)">☆</button>
+                    <button onclick="setRating('flavor',2)">☆</button>
+                    <button onclick="setRating('flavor',3)">☆</button>
+                    <button onclick="setRating('flavor',4)">☆</button>
+                    <button onclick="setRating('flavor',5)">☆</button>
+                </div>
+
+                <div class="rating" data-category="clarity">
+                    <span>Clarity</span>
+                    <button onclick="setRating('clarity',1)">☆</button>
+                    <button onclick="setRating('clarity',2)">☆</button>
+                    <button onclick="setRating('clarity',3)">☆</button>
+                    <button onclick="setRating('clarity',4)">☆</button>
+                    <button onclick="setRating('clarity',5)">☆</button>
+                </div>
+
+                <div class="rating" data-category="sweetness">
+                    <span>Sweetness</span>
+                    <button onclick="setRating('sweetness',1)">☆</button>
+                    <button onclick="setRating('sweetness',2)">☆</button>
+                    <button onclick="setRating('sweetness',3)">☆</button>
+                    <button onclick="setRating('sweetness',4)">☆</button>
+                    <button onclick="setRating('sweetness',5)">☆</button>
+                </div>
+
+                <div class="rating" data-category="mouthfeel">
+                    <span>Mouthfeel</span>
+                    <button onclick="setRating('mouthfeel',1)">☆</button>
+                    <button onclick="setRating('mouthfeel',2)">☆</button>
+                    <button onclick="setRating('mouthfeel',3)">☆</button>
+                    <button onclick="setRating('mouthfeel',4)">☆</button>
+                    <button onclick="setRating('mouthfeel',5)">☆</button>
+                </div>
+
+                <button class="save-btn" onclick="saveBatch()">Seal Batch Into Grimoire</button>
+            </div>
+        </section>
+
+        <section id="about" class="page-section hidden">
+            <div class="lux-panel full-panel">
+                <div class="panel-header">
+                    <span>🜔</span>
+                    <h3>About Crystal Raven</h3>
+                    <span>🜔</span>
+                </div>
+
+                <p>
+                    Crystal Raven Meadery is a ceremonial brewing concept inspired by
+                    ravens, crystals, medieval manuscripts, candlelit cellars,
+                    alchemical symbols, and the sacred transformation of honey into mead.
+                </p>
+
+                <p>
+                    This toolkit is both a brewing journal and a practical production
+                    tracker, built to record recipes, gravity readings, ingredients,
+                    fermentation activity, tasting notes, and refinement rituals.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+</div>
 
 <script src="script.js"></script>
 </body>
